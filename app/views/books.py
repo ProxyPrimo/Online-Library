@@ -30,6 +30,18 @@ def create_book(request):
         return render(request, 'add-book-page.html', ctx)
 
 
+def details_book(request, pk):
+    book = Book.objects.get(pk=pk)
+
+    if request.method == 'GET':
+        ctx = {
+            'book': book,
+            'form': BookForm(instance=book),
+        }
+
+        return render(request, 'book-details-page.html', ctx)
+
+
 def edit_book(request, pk):
     book = Book.objects.get(pk=pk)
 
