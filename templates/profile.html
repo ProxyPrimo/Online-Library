@@ -8,8 +8,8 @@
                     src="{{ profile.image_url }}"
                     alt=""></p>
             <div class="actions">
-                <a class="button" href="#">Edit</a>
-                <a class="button" href="#">Delete</a>
+                <a class="button" href="{% url 'edit profile' %}">Edit</a>
+{#                <a class="button" href="{% url 'delete profile' %}">Delete</a>#}
             </div>
         </div>
     </section>

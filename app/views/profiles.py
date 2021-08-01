@@ -35,3 +35,28 @@ def details_profile(request):
         }
 
         return render(request, 'profile.html', ctx)
+
+
+def edit_profile(request):
+    profile = get_profile()
+    if request.method == 'GET':
+        form = ProfileForm(instance=profile)
+        ctx = {
+            'form': form,
+            'profile': profile
+        }
+
+        return render(request, 'edit-profile-page.html', ctx)
+
+    elif request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+
+        ctx = {
+            'form': form,
+            'profile': profile
+        }
+
+        return render(request, 'edit-profile-page.html', ctx)
