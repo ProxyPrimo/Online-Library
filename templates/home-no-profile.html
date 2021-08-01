@@ -1,46 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "fragment/base-layout.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="../static/images/library.jpg" type="image/x-icon" />
-    <link rel="stylesheet" href="../static/css/styles.css">
-    <title>Online Books Library</title>
-</head>
+{% block content %}
+    <!-- No Profile Page -->
+    <section id="register-page" class="register">
+        <form id="register-form" action="{% url 'create profile' %}" method="POST">
+            <fieldset>
+                <legend>Profile Form</legend>
+                {{ form.first_name.label }}
+                {{ form.first_name }}
+                {{ form.last_name.label }}
+                {{ form.last_name }}
+                {{ form.image_url.label }}
+                {{ form.image_url }}
 
-<body>
-    <div id="container">
-        <header id="site-header">
-            <!-- Navigation -->
-            <nav class="navbar">
-                <section class="navbar-dashboard">
-                    <a href="/">Dashboard</a>
-                </section>
-            </nav>
-        </header>
-
-     <!-- No Profile Page -->
-        <section id="register-page" class="register">
-            <form id="register-form" action="{% url 'create profile' %}" method="POST">
-                <fieldset>
-                    <legend>Profile Form</legend>
-                    {{ form.first_name.label }}
-                    {{ form.first_name }}
-                    {{ form.last_name.label }}
-                    {{ form.last_name }}
-                    {{ form.image_url.label }}
-                    {{ form.image_url }}
-
-                    {% csrf_token %}
-                    <input class="button submit" type="submit" value="Enter">
-                </fieldset>
-            </form>
-        </section>
-
-        <footer id="site-footer">
-            <p>Python Web Basics Retake Exam @SoftUni</p>
-        </footer>
-    </div>
-</body>
-
-</html>
+                {% csrf_token %}
+                <input class="button submit" type="submit" value="Enter">
+            </fieldset>
+        </form>
+    </section>
+{% endblock %}
