@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 
+from app.common.profile import get_profile
 from app.forms.profile import ProfileForm
 
 
@@ -23,3 +24,14 @@ def create_profile(request):
     }
 
     return render(request, 'home-no-profile.html', ctx)
+
+
+def details_profile(request):
+    profile = get_profile()
+
+    if request.method == 'GET':
+        ctx = {
+            'profile': profile
+        }
+
+        return render(request, 'profile.html', ctx)
