@@ -2,7 +2,7 @@ from django.urls import path
 
 from app.views.books import create_book, edit_book, details_book
 from app.views.index import index
-from app.views.profiles import create_profile, details_profile, edit_profile
+from app.views.profiles import create_profile, details_profile, edit_profile, delete_profile
 
 urlpatterns = (
     # Index
@@ -12,6 +12,7 @@ urlpatterns = (
     path('profile/create/', create_profile, name='create profile'),
     path('profile/', details_profile, name='details profile'),
     path('profile/edit/', edit_profile, name='edit profile'),
+    path('profile/delete/', delete_profile, name='delete profile'),
 
 
     # Book

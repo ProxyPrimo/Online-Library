@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 
 from app.common.profile import get_profile
-from app.forms.profile import ProfileForm
+from app.forms.profile import ProfileForm, ProfileDeleteForm
+from app.models import Profile
 
 
 def create_profile(request):
@@ -60,3 +61,18 @@ def edit_profile(request):
         }
 
         return render(request, 'edit-profile-page.html', ctx)
+
+def delete_profile(request):
+    profile = get_profile()
+    if request.method == 'GET':
+        form = ProfileDeleteForm(instance=profile)
+
+        ctx = {
+            'form': form
+        }
+
+        return render(request, 'delete-profile-page.html', ctx)
+
+    if request.method == 'POST':
+        Profile.delete(profile)
+        return redirect('index')
